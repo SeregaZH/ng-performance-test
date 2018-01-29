@@ -1,17 +1,16 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-             selector: 'sg-table',
+             selector: 'sg-n-table',
              template: `
                <ng-template ngFor trackBy="trackByFn" let-item="$implicit" [ngForOf]="rows">
-                 <sg-table-row [row]="item" class="sg-row"></sg-table-row>
+                 <sg-n-table-row [row]="item" class="sg-row"></sg-n-table-row>
                </ng-template>`,
-             changeDetection: ChangeDetectionStrategy.OnPush,
-             styleUrls: ['app/table.component.css'],
+             styleUrls: ['app/non-on-push-table/n-table.component.css'],
              encapsulation: ViewEncapsulation.None
            })
 
-export class TableComponent {
+export class NTableComponent {
 
   @Input()
   public rows: { name, number }[];

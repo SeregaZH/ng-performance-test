@@ -7,5 +7,3 @@ bower_components
 aot/*
 dist/*
 yarn.lock
-.idea
-.editorconfig

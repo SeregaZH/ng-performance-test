@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
     <div class="header-bar"></div>
     <nav>
       <a routerLink="/onpush" routerLinkActive="active">On Push</a>
+      <a routerLink="/non-onpush" routerLinkActive="active">Non On Push</a>
    </nav>
     <router-outlet></router-outlet>
   `,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OnPushComponent } from './on-push-component';
+import { NonOnPushComponent } from './non-on-push-component';
 
 const routes: Routes = [
   {
@@ -11,11 +12,11 @@ const routes: Routes = [
   {
     path: 'onpush',
     component: OnPushComponent
-  }/*,
+  },
   {
     path: 'non-onpush',
     component: NonOnPushComponent
-  }*/
+  }
 ];
 
 @NgModule({
@@ -24,4 +25,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routedComponents = [OnPushComponent];
+export const routedComponents = [OnPushComponent, NonOnPushComponent];

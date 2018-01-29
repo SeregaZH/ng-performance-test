@@ -4,42 +4,60 @@ import { Component } from '@angular/core';
   selector: 'sg-on-push',
   template: `
     <button (click)="reverseOdd()">Reverse Odd</button>
-    <sg-table [rows]="rows">
-    
-  </sg-table>`
+    <sg-table [rows]="rows"></sg-table>`
 })
 export class OnPushComponent {
-    public rows: any[] = OnPushComponent.generateRows();
+  private static rowNumber = 300;
+  private static columnNumber = 40;
+  private static rowsAffectedDivider = 1;
 
-    public static generateRows(): any[] {
-      let res = [];
-      for (let i = 0; i < 600; i++) {
-        res.push(OnPushComponent.generateColumns());
-      }
-      return res;
-    }
+  public rows: any[] = OnPushComponent.generateRows();
 
-    public static generateColumns(): any[] {
-      let res = [];
-      for (let i = 0; i < 40; i++) {
-        res.push({ name: `col-${i}`, number: Math.floor(Math.random() * (10 - (-10))) - 10 });
-      }
-      return res;
+  public static generateRows(): any[] {
+    let res = [];
+    for (let i = 0; i < OnPushComponent.rowNumber; i++) {
+      res.push(OnPushComponent.generateColumns());
     }
+    return res;
+  }
 
-    public reverseOdd() {
-      let res = [];
-      for (let i = 0; i < 600; i++) {
-        res.push(i % 2 > 0 ? this.rows[i] : this.reverseOddCell(this.rows[i]));
-      }
-      this.rows = res;
+  public static generateColumns(): any[] {
+    let res = [];
+    for (let i = 0; i < OnPushComponent.columnNumber; i++) {
+      res.push({ name: `col-${i}`, number: Math.floor(Math.random() * (10 - (-10))) - 10 });
     }
+    return res;
+  }
 
-    public reverseOddCell(row: {name, number}[]): any[] {
-      let res = [];
-      for (let i = 0; i < 40; i++) {
-        res.push(i % 2 > 0 ? row[i] : { name: row[i].name, number: row[i].number * -1 });
-      }
-      return res;
+  public reverseOdd() {
+    let res = [];
+    for (let i = 0; i < OnPushComponent.rowNumber; i++) {
+      res.push(i % OnPushComponent.rowsAffectedDivider > 0 ? this.rows[i] : this.reverseOddCell(this.rows[i]));
     }
+    this.rows = res;
+  }
+
+  public reverseOddCell(row: { name, number }[]): any[] {
+    let res = [];
+    for (let i = 0; i < OnPushComponent.columnNumber; i++) {
+      res.push({ name: row[i].name, number: row[i].number * -1 });
+    }
+    return res;
+  }
+
+/*  public reverseOdd() {
+    for (let i = 0; i < OnPushComponent.rowNumber; i++) {
+      if (i % OnPushComponent.rowsAffectedDivider === 0) {
+        this.reverseOddCell(this.rows[i]);
+      }
+    }
+  }
+
+  public reverseOddCell(row: { name, number }[]): void {
+    for (let i = 0; i < OnPushComponent.columnNumber; i++) {
+      if (i % OnPushComponent.rowsAffectedDivider === 0) {
+        row[i].number *= -1;
+      }
+    }
+  }*/
 }

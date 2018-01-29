@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
 @Component({
   selector: 'sg-table-row',
   template: `<sg-table-column *ngFor="let col of row;trackBy:trackByFn" [column]="col"></sg-table-column>`,
-  changeDetection: ChangeDetectionStrategy.OnPus,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 
